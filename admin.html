@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel - Applications</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-6">
+
+  <h1 class="text-3xl font-bold mb-6 text-center">Application Submissions</h1>
+
+  <div class="overflow-x-auto">
+    <table class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
+      <thead class="bg-blue-800 text-white">
+        <tr>
+          <th class="py-3 px-4 text-left">Full Name</th>
+          <th class="py-3 px-4 text-left">Email</th>
+          <th class="py-3 px-4 text-left">Phone</th>
+          <th class="py-3 px-4 text-left">DOB</th>
+          <th class="py-3 px-4 text-left">Gender</th>
+          <th class="py-3 px-4 text-left">Submitted At</th>
+        </tr>
+      </thead>
+      <tbody id="submissionsTable" class="divide-y divide-gray-200 cursor-pointer">
+        <!-- Records will appear here -->
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Modal -->
+  <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+    <div class="bg-white rounded-lg shadow-lg max-w-3xl w-full p-6 relative">
+      <button id="closeModal" class="absolute top-2 right-3 text-gray-600 hover:text-gray-900 text-2xl font-bold">&times;</button>
+      <h2 class="text-2xl font-bold mb-4">Submission Details</h2>
+      <div id="modalContent" class="space-y-4 overflow-y-auto max-h-[70vh]">
+        <!-- Full submission details will go here -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const binId = "69692389d0ea881f406e261a"; // your JSONBin ID
+    const secretKey = "$2a$10$yti1izYQ7PKY9IhwxrQiuuIk8TZDdxM6nzYFnduMOvJtKIdyRhBB."; // your JSONBin secret
+
+    async function fetchSubmissions() {
+      try {
+        const res = await fetch(`https://api.jsonbin.io/v3/b/${binId}`, {
+          headers: { "X-Master-Key": secretKey }
+        });
+
+        if (!res.ok) throw new Error("Failed to fetch data");
+
+        const data = await res.json();
+        const submissions = data.record.submissions || [];
+        const table = document.getElementById("submissionsTable");
+        table.innerHTML = "";
+
+        submissions.forEach((sub, index) => {
+          const tr = document.createElement("tr");
+          tr.className = "hover:bg-gray-100";
+          tr.dataset.index = index;
+
+          tr.innerHTML = `
+            <td class="py-2 px-4">${sub.fullname || ""}</td>
+            <td class="py-2 px-4">${sub.email || ""}</td>
+            <td class="py-2 px-4">${sub.phone || ""}</td>
+            <td class="py-2 px-4">${sub.dob || ""}</td>
+            <td class="py-2 px-4">${sub.gender || ""}</td>
+            <td class="py-2 px-4">${sub.timestamp || ""}</td>
+          `;
+
+          tr.addEventListener("click", () => showModal(sub));
+
+          table.appendChild(tr);
+        });
+
+      } catch (error) {
+        console.error(error);
+        alert("Failed to fetch submissions");
+      }
+    }
+
+    // Modal logic
+    const modal = document.getElementById("modal");
+    const modalContent = document.getElementById("modalContent");
+    const closeModal = document.getElementById("closeModal");
+
+    function showModal(sub) {
+      modalContent.innerHTML = ""; // Clear previous content
+
+      for (const key in sub) {
+        if (sub.hasOwnProperty(key)) {
+          const value = sub[key];
+
+          // Check if value is a Cloudinary image URL
+          if (typeof value === "string" && value.startsWith("https://res.cloudinary.com/")) {
+            const img = document.createElement("img");
+            img.src = value;
+            img.alt = key;
+            img.className = "max-h-64 w-auto border rounded shadow";
+            modalContent.appendChild(img);
+            modalContent.appendChild(document.createElement("br"));
+          } else {
+            const p = document.createElement("p");
+            p.innerHTML = `<strong>${key}:</strong> ${value}`;
+            modalContent.appendChild(p);
+          }
+        }
+      }
+
+      modal.classList.remove("hidden");
+    }
+
+    closeModal.addEventListener("click", () => modal.classList.add("hidden"));
+    modal.addEventListener("click", (e) => { if (e.target === modal) modal.classList.add("hidden"); });
+
+    // Load submissions on page load
+    fetchSubmissions();
+  </script>
+</body>
+</html>
