@@ -8,24 +8,46 @@
 </head>
 <body class="bg-gray-100 p-6">
 
-  <h1 class="text-3xl font-bold mb-6 text-center">Application Submissions</h1>
+  <!-- Login Modal -->
+  <div id="loginModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div class="bg-white rounded-lg shadow-lg max-w-md w-full p-6 relative">
+      <h2 class="text-2xl font-bold mb-4 text-center">Admin Login</h2>
+      <form id="loginForm" class="space-y-4">
+        <div>
+          <label class="block font-semibold mb-1">Username</label>
+          <input type="text" id="username" class="w-full border px-3 py-2 rounded" required>
+        </div>
+        <div>
+          <label class="block font-semibold mb-1">Password</label>
+          <input type="password" id="password" class="w-full border px-3 py-2 rounded" required>
+        </div>
+        <button type="submit" class="w-full bg-blue-800 text-white py-2 rounded hover:bg-blue-900">Login</button>
+      </form>
+      <p id="loginError" class="text-red-500 text-center mt-2 hidden">Invalid credentials</p>
+    </div>
+  </div>
 
-  <div class="overflow-x-auto">
-    <table class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
-      <thead class="bg-blue-800 text-white">
-        <tr>
-          <th class="py-3 px-4 text-left">Full Name</th>
-          <th class="py-3 px-4 text-left">Email</th>
-          <th class="py-3 px-4 text-left">Phone</th>
-          <th class="py-3 px-4 text-left">DOB</th>
-          <th class="py-3 px-4 text-left">Gender</th>
-          <th class="py-3 px-4 text-left">Submitted At</th>
-        </tr>
-      </thead>
-      <tbody id="submissionsTable" class="divide-y divide-gray-200 cursor-pointer">
-        <!-- Records will appear here -->
-      </tbody>
-    </table>
+  <!-- Admin Table -->
+  <div id="adminContent" class="hidden">
+    <h1 class="text-3xl font-bold mb-6 text-center">Application Submissions</h1>
+
+    <div class="overflow-x-auto">
+      <table class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
+        <thead class="bg-blue-800 text-white">
+          <tr>
+            <th class="py-3 px-4 text-left">Full Name</th>
+            <th class="py-3 px-4 text-left">Email</th>
+            <th class="py-3 px-4 text-left">Phone</th>
+            <th class="py-3 px-4 text-left">DOB</th>
+            <th class="py-3 px-4 text-left">Gender</th>
+            <th class="py-3 px-4 text-left">Submitted At</th>
+          </tr>
+        </thead>
+        <tbody id="submissionsTable" class="divide-y divide-gray-200 cursor-pointer">
+          <!-- Records will appear here -->
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <!-- Modal -->
@@ -40,6 +62,29 @@
   </div>
 
   <script>
+    // Hardcoded login credentials (you can replace with your own)
+    const validUsername = "admin";
+    const validPassword = "Pass001";
+
+    const loginModal = document.getElementById("loginModal");
+    const adminContent = document.getElementById("adminContent");
+    const loginForm = document.getElementById("loginForm");
+    const loginError = document.getElementById("loginError");
+
+    loginForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      if (username === validUsername && password === validPassword) {
+        loginModal.classList.add("hidden");
+        adminContent.classList.remove("hidden");
+        fetchSubmissions(); // load submissions after login
+      } else {
+        loginError.classList.remove("hidden");
+      }
+    });
+
     const binId = "69692389d0ea881f406e261a"; // your JSONBin ID
     const secretKey = "$2a$10$yti1izYQ7PKY9IhwxrQiuuIk8TZDdxM6nzYFnduMOvJtKIdyRhBB."; // your JSONBin secret
 
@@ -93,7 +138,6 @@
         if (sub.hasOwnProperty(key)) {
           const value = sub[key];
 
-          // Check if value is a Cloudinary image URL
           if (typeof value === "string" && value.startsWith("https://res.cloudinary.com/")) {
             const img = document.createElement("img");
             img.src = value;
@@ -115,8 +159,6 @@
     closeModal.addEventListener("click", () => modal.classList.add("hidden"));
     modal.addEventListener("click", (e) => { if (e.target === modal) modal.classList.add("hidden"); });
 
-    // Load submissions on page load
-    fetchSubmissions();
   </script>
 </body>
 </html>
