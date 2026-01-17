@@ -1,164 +1,199 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Admin Panel - Applications</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <body class="bg-gray-100 p-6">
 
-  <!-- Login Modal -->
-  <div id="loginModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-    <div class="bg-white rounded-lg shadow-lg max-w-md w-full p-6 relative">
-      <h2 class="text-2xl font-bold mb-4 text-center">Admin Login</h2>
-      <form id="loginForm" class="space-y-4">
-        <div>
-          <label class="block font-semibold mb-1">Username</label>
-          <input type="text" id="username" class="w-full border px-3 py-2 rounded" required>
-        </div>
-        <div>
-          <label class="block font-semibold mb-1">Password</label>
-          <input type="password" id="password" class="w-full border px-3 py-2 rounded" required>
-        </div>
-        <button type="submit" class="w-full bg-blue-800 text-white py-2 rounded hover:bg-blue-900">Login</button>
-      </form>
-      <p id="loginError" class="text-red-500 text-center mt-2 hidden">Invalid credentials</p>
-    </div>
-  </div>
-
-  <!-- Admin Table -->
-  <div id="adminContent" class="hidden">
-    <h1 class="text-3xl font-bold mb-6 text-center">Application Submissions</h1>
-
-    <div class="overflow-x-auto">
-      <table class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
-        <thead class="bg-blue-800 text-white">
-          <tr>
-            <th class="py-3 px-4 text-left">Full Name</th>
-            <th class="py-3 px-4 text-left">Email</th>
-            <th class="py-3 px-4 text-left">Phone</th>
-            <th class="py-3 px-4 text-left">DOB</th>
-            <th class="py-3 px-4 text-left">Gender</th>
-            <th class="py-3 px-4 text-left">Submitted At</th>
-          </tr>
-        </thead>
-        <tbody id="submissionsTable" class="divide-y divide-gray-200 cursor-pointer">
-          <!-- Records will appear here -->
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- Modal -->
-  <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
-    <div class="bg-white rounded-lg shadow-lg max-w-3xl w-full p-6 relative">
-      <button id="closeModal" class="absolute top-2 right-3 text-gray-600 hover:text-gray-900 text-2xl font-bold">&times;</button>
-      <h2 class="text-2xl font-bold mb-4">Submission Details</h2>
-      <div id="modalContent" class="space-y-4 overflow-y-auto max-h-[70vh]">
-        <!-- Full submission details will go here -->
+<!-- LOGIN MODAL -->
+<div id="loginModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+  <div class="bg-white rounded-lg shadow-lg max-w-md w-full p-6">
+    <h2 class="text-2xl font-bold mb-4 text-center">Admin Login</h2>
+    <form id="loginForm" class="space-y-4">
+      <div>
+        <label class="block font-semibold mb-1">Username</label>
+        <input type="text" id="username" class="w-full border px-3 py-2 rounded" required />
       </div>
-    </div>
+      <div>
+        <label class="block font-semibold mb-1">Password</label>
+        <input type="password" id="password" class="w-full border px-3 py-2 rounded" required />
+      </div>
+      <button class="w-full bg-blue-800 text-white py-2 rounded hover:bg-blue-900">
+        Login
+      </button>
+    </form>
+    <p id="loginError" class="text-red-500 text-center mt-2 hidden">
+      Invalid credentials
+    </p>
   </div>
+</div>
 
-  <script>
-    // Hardcoded login credentials (you can replace with your own)
-    const validUsername = "Rogboway";
-    const validPassword = "Blessing12@";
+<!-- ADMIN CONTENT -->
+<div id="adminContent" class="hidden">
+  <h1 class="text-3xl font-bold mb-6 text-center">Application Submissions</h1>
 
-    const loginModal = document.getElementById("loginModal");
-    const adminContent = document.getElementById("adminContent");
-    const loginForm = document.getElementById("loginForm");
-    const loginError = document.getElementById("loginError");
+  <div class="overflow-x-auto">
+    <table class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
+      <thead class="bg-blue-800 text-white">
+        <tr>
+          <th class="py-3 px-4 text-left">Full Name</th>
+          <th class="py-3 px-4 text-left">Email</th>
+          <th class="py-3 px-4 text-left">Phone</th>
+          <th class="py-3 px-4 text-left">DOB</th>
+          <th class="py-3 px-4 text-left">Gender</th>
+          <th class="py-3 px-4 text-left">Submitted At</th>
+          <th class="py-3 px-4 text-left">Actions</th>
+        </tr>
+      </thead>
+      <tbody id="submissionsTable" class="divide-y divide-gray-200">
+      </tbody>
+    </table>
+  </div>
+</div>
 
-    loginForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const username = document.getElementById("username").value;
-      const password = document.getElementById("password").value;
+<!-- VIEW MODAL -->
+<div id="modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+  <div class="bg-white rounded-lg shadow-lg max-w-3xl w-full p-6 relative">
+    <button id="closeModal" class="absolute top-2 right-3 text-2xl font-bold">&times;</button>
+    <h2 class="text-2xl font-bold mb-4">Submission Details</h2>
+    <div id="modalContent" class="space-y-3 max-h-[70vh] overflow-y-auto"></div>
+  </div>
+</div>
 
-      if (username === validUsername && password === validPassword) {
-        loginModal.classList.add("hidden");
-        adminContent.classList.remove("hidden");
-        fetchSubmissions(); // load submissions after login
-      } else {
-        loginError.classList.remove("hidden");
-      }
+<script>
+/* ===== LOGIN ===== */
+const validUsername = "Rogboway";
+const validPassword = "Blessing12@";
+
+const loginModal = document.getElementById("loginModal");
+const adminContent = document.getElementById("adminContent");
+const loginForm = document.getElementById("loginForm");
+const loginError = document.getElementById("loginError");
+
+loginForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  if (
+    username.value === validUsername &&
+    password.value === validPassword
+  ) {
+    loginModal.classList.add("hidden");
+    adminContent.classList.remove("hidden");
+    fetchSubmissions();
+  } else {
+    loginError.classList.remove("hidden");
+  }
+});
+
+/* ===== JSONBIN CONFIG ===== */
+const binId = "69692389d0ea881f406e261a";
+const secretKey = "$2a$10$yti1izYQ7PKY9IhwxrQiuuIk8TZDdxM6nzYFnduMOvJtKIdyRhBB.";
+
+/* ===== FETCH DATA ===== */
+async function fetchSubmissions() {
+  try {
+    const res = await fetch(`https://api.jsonbin.io/v3/b/${binId}`, {
+      headers: { "X-Master-Key": secretKey }
     });
 
-    const binId = "69692389d0ea881f406e261a"; // your JSONBin ID
-    const secretKey = "$2a$10$yti1izYQ7PKY9IhwxrQiuuIk8TZDdxM6nzYFnduMOvJtKIdyRhBB."; // your JSONBin secret
+    const data = await res.json();
+    const submissions = data.record.submissions || [];
+    const table = document.getElementById("submissionsTable");
+    table.innerHTML = "";
 
-    async function fetchSubmissions() {
-      try {
-        const res = await fetch(`https://api.jsonbin.io/v3/b/${binId}`, {
-          headers: { "X-Master-Key": secretKey }
-        });
+    submissions.forEach((sub, index) => {
+      const tr = document.createElement("tr");
+      tr.className = "hover:bg-gray-100";
 
-        if (!res.ok) throw new Error("Failed to fetch data");
+      tr.innerHTML = `
+        <td class="py-2 px-4 cursor-pointer">${sub.fullname || ""}</td>
+        <td class="py-2 px-4 cursor-pointer">${sub.email || ""}</td>
+        <td class="py-2 px-4 cursor-pointer">${sub.phone || ""}</td>
+        <td class="py-2 px-4 cursor-pointer">${sub.dob || ""}</td>
+        <td class="py-2 px-4 cursor-pointer">${sub.gender || ""}</td>
+        <td class="py-2 px-4 cursor-pointer">${sub.timestamp || ""}</td>
+        <td class="py-2 px-4">
+          <button onclick="deleteRecord(${index})"
+            class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700">
+            Delete
+          </button>
+        </td>
+      `;
 
-        const data = await res.json();
-        const submissions = data.record.submissions || [];
-        const table = document.getElementById("submissionsTable");
-        table.innerHTML = "";
+      tr.querySelectorAll("td:not(:last-child)").forEach(td => {
+        td.addEventListener("click", () => showModal(sub));
+      });
 
-        submissions.forEach((sub, index) => {
-          const tr = document.createElement("tr");
-          tr.className = "hover:bg-gray-100";
-          tr.dataset.index = index;
+      table.appendChild(tr);
+    });
 
-          tr.innerHTML = `
-            <td class="py-2 px-4">${sub.fullname || ""}</td>
-            <td class="py-2 px-4">${sub.email || ""}</td>
-            <td class="py-2 px-4">${sub.phone || ""}</td>
-            <td class="py-2 px-4">${sub.dob || ""}</td>
-            <td class="py-2 px-4">${sub.gender || ""}</td>
-            <td class="py-2 px-4">${sub.timestamp || ""}</td>
-          `;
+  } catch (err) {
+    alert("Failed to fetch data");
+  }
+}
 
-          tr.addEventListener("click", () => showModal(sub));
+/* ===== DELETE RECORD ===== */
+async function deleteRecord(index) {
+  if (!confirm("Are you sure you want to delete this record?")) return;
 
-          table.appendChild(tr);
-        });
+  try {
+    const res = await fetch(`https://api.jsonbin.io/v3/b/${binId}`, {
+      headers: { "X-Master-Key": secretKey }
+    });
 
-      } catch (error) {
-        console.error(error);
-        alert("Failed to fetch submissions");
-      }
+    const data = await res.json();
+    const submissions = data.record.submissions || [];
+
+    submissions.splice(index, 1);
+
+    await fetch(`https://api.jsonbin.io/v3/b/${binId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Master-Key": secretKey
+      },
+      body: JSON.stringify({ submissions })
+    });
+
+    alert("Record deleted successfully");
+    fetchSubmissions();
+
+  } catch (err) {
+    alert("Failed to delete record");
+  }
+}
+
+/* ===== MODAL ===== */
+const modal = document.getElementById("modal");
+const modalContent = document.getElementById("modalContent");
+const closeModal = document.getElementById("closeModal");
+
+function showModal(sub) {
+  modalContent.innerHTML = "";
+
+  for (const key in sub) {
+    const value = sub[key];
+
+    if (typeof value === "string" && value.startsWith("https://res.cloudinary.com")) {
+      const img = document.createElement("img");
+      img.src = value;
+      img.className = "max-h-64 border rounded";
+      modalContent.appendChild(img);
+    } else {
+      modalContent.innerHTML += `<p><strong>${key}:</strong> ${value}</p>`;
     }
+  }
 
-    // Modal logic
-    const modal = document.getElementById("modal");
-    const modalContent = document.getElementById("modalContent");
-    const closeModal = document.getElementById("closeModal");
+  modal.classList.remove("hidden");
+}
 
-    function showModal(sub) {
-      modalContent.innerHTML = ""; // Clear previous content
+closeModal.onclick = () => modal.classList.add("hidden");
+modal.onclick = (e) => e.target === modal && modal.classList.add("hidden");
+</script>
 
-      for (const key in sub) {
-        if (sub.hasOwnProperty(key)) {
-          const value = sub[key];
-
-          if (typeof value === "string" && value.startsWith("https://res.cloudinary.com/")) {
-            const img = document.createElement("img");
-            img.src = value;
-            img.alt = key;
-            img.className = "max-h-64 w-auto border rounded shadow";
-            modalContent.appendChild(img);
-            modalContent.appendChild(document.createElement("br"));
-          } else {
-            const p = document.createElement("p");
-            p.innerHTML = `<strong>${key}:</strong> ${value}`;
-            modalContent.appendChild(p);
-          }
-        }
-      }
-
-      modal.classList.remove("hidden");
-    }
-
-    closeModal.addEventListener("click", () => modal.classList.add("hidden"));
-    modal.addEventListener("click", (e) => { if (e.target === modal) modal.classList.add("hidden"); });
-
-  </script>
 </body>
 </html>
